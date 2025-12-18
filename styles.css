@@ -3187,18 +3187,19 @@ input {
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
-        padding: 120px 0 60px;
+        padding: 60px 0 40px;
     }
     
     .hero-slide {
         height: auto;
-        min-height: 500px;
+        min-height: auto;
         max-height: none;
+        padding: 20px;
     }
     
     .hero {
         min-height: auto;
-        padding: 80px 20px 40px;
+        padding: 100px 20px 40px;
     }
     
     .hero-text {
@@ -3223,6 +3224,16 @@ input {
         order: 2;
         justify-content: center;
         margin-top: 40px;
+        overflow: hidden;
+    }
+    
+    .hero-qr-image {
+        width: 100%;
+        min-width: unset;
+        max-width: 500px;
+        margin-left: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
     
     .hero-mockup-image {
@@ -3253,6 +3264,10 @@ input {
         grid-template-columns: repeat(2, 1fr);
     }
     
+    .stats-grid-new {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
     .products-grid {
         grid-template-columns: 1fr;
     }
@@ -3261,6 +3276,10 @@ input {
         grid-template-columns: 1fr;
         max-width: 500px;
         margin: 0 auto;
+    }
+    
+    .use-cases-grid-new {
+        grid-template-columns: 1fr;
     }
     
     .steps-row {
@@ -3290,7 +3309,15 @@ input {
         order: 1;
     }
     
+    .developer-features {
+        grid-template-columns: 1fr;
+    }
+    
     .networks-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .network-logos {
         grid-template-columns: repeat(2, 1fr);
     }
     
@@ -3313,6 +3340,28 @@ input {
     .footer-links {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    .cta-demo-container {
+        padding: 40px 30px;
+    }
+    
+    .cta-demo-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .cta-action-card {
+        padding: 50px 30px;
+    }
+    
+    .cta-action-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .paw-decoration {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {
@@ -3328,12 +3377,26 @@ input {
         padding: 15px 0;
     }
     
+    .header-actions {
+        gap: 10px;
+    }
+    
+    .btn-launch {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
     .hero-content {
-        padding: 100px 0 50px;
+        padding: 40px 0 30px;
     }
     
     .hero-text h1 {
         font-size: 28px;
+        line-height: 1.1;
+    }
+    
+    .hero-text h1 .nowrap {
+        white-space: normal;
     }
     
     .hero-text p {
@@ -3351,6 +3414,11 @@ input {
         bottom: 15px;
     }
     
+    .hero-qr-image {
+        width: 100%;
+        max-width: 350px;
+    }
+    
     .api-visual {
         height: 200px;
     }
@@ -3366,8 +3434,20 @@ input {
         text-align: center;
     }
     
+    .section-header h2 {
+        font-size: 28px;
+    }
+    
+    .section-header p {
+        font-size: 15px;
+    }
+    
     .features-grid-new {
         grid-template-columns: 1fr;
+    }
+    
+    .feature-card-new {
+        padding: 24px;
     }
     
     .connector-line {
@@ -3379,13 +3459,26 @@ input {
         border-radius: 24px;
     }
     
+    .stats-inner-container {
+        padding: 40px 20px;
+    }
+    
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
     }
     
+    .stats-grid-new {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
     .stat-number {
         font-size: 36px;
+    }
+    
+    .stat-number-new {
+        font-size: 32px;
     }
     
     .stat-icon {
@@ -3400,16 +3493,98 @@ input {
         height: 250px;
     }
     
+    .product-card {
+        padding: 24px;
+    }
+    
+    .use-case-card-new {
+        padding: 24px;
+    }
+    
     .cta-input-group {
         flex-direction: column;
+    }
+    
+    .cta-demo-container {
+        padding: 30px 20px;
+    }
+    
+    .cta-demo-container h2 {
+        font-size: 24px;
+    }
+    
+    .cta-action-card {
+        padding: 40px 20px;
+    }
+    
+    .cta-action-card h2 {
+        font-size: 24px;
+    }
+    
+    .use-case-cta-container {
+        padding: 30px 20px;
+    }
+    
+    .use-case-cta-container h3 {
+        font-size: 20px;
+    }
+    
+    .how-it-works-new {
+        padding: 60px 0;
+    }
+    
+    .steps-container-new {
+        gap: 20px;
+    }
+    
+    .step-card-new {
+        padding: 24px;
+    }
+    
+    .code-block {
+        padding: 20px;
+    }
+    
+    .ready-to-build {
+        padding: 30px 20px;
+    }
+    
+    .ready-features {
+        grid-template-columns: 1fr;
+    }
+    
+    .ready-buttons {
+        flex-direction: column;
+    }
+    
+    .networks-card {
+        padding: 40px 20px;
+    }
+    
+    .network-logos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
     }
     
     .api-tools-grid {
         grid-template-columns: 1fr;
     }
     
+    .api-tool-card {
+        padding: 20px;
+    }
+    
     .resource-cards {
         grid-template-columns: 1fr;
+    }
+    
+    .resource-card {
+        padding: 24px;
+        min-height: 200px;
+    }
+    
+    .developer-buttons {
+        flex-direction: column;
     }
     
     .footer-links {
@@ -3421,6 +3596,10 @@ input {
         gap: 20px;
         text-align: center;
     }
+    
+    .footer-brand p {
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -3428,40 +3607,172 @@ input {
         padding: 0 16px;
     }
     
+    .hero {
+        padding: 90px 15px 30px;
+    }
+    
+    .hero-slide {
+        padding: 15px;
+        border-radius: 20px;
+    }
+    
     .hero-text h1 {
-        font-size: 36px;
+        font-size: 28px;
+    }
+    
+    .hero-text p {
+        font-size: 14px;
     }
     
     .hero-buttons {
         flex-direction: column;
         width: 100%;
+        gap: 12px;
     }
     
     .hero-buttons .btn-primary,
-    .hero-buttons .btn-secondary {
+    .hero-buttons .btn-secondary,
+    .hero-buttons .btn-outline-dark {
         width: 100%;
         justify-content: center;
+        padding: 14px 20px;
+    }
+    
+    .hero-qr-image {
+        max-width: 280px;
     }
     
     .stats-grid {
         grid-template-columns: 1fr;
     }
     
+    .stats-grid-new {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-card-new {
+        padding: 20px;
+    }
+    
     .section-header h2 {
-        font-size: 28px;
+        font-size: 24px;
+    }
+    
+    .section-header p {
+        font-size: 14px;
+    }
+    
+    .features, .products-section, .use-cases, .how-it-works-new, .api-stack-section {
+        padding: 50px 0;
+    }
+    
+    .product-card {
+        padding: 20px;
+    }
+    
+    .product-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .use-case-card-new {
+        padding: 20px;
+    }
+    
+    .stat-highlight-wrapper {
+        flex-direction: column;
+        gap: 15px;
     }
     
     .cta-card {
         padding: 40px 24px;
     }
     
+    .cta-demo-container h2 {
+        font-size: 20px;
+    }
+    
+    .cta-demo-container p {
+        font-size: 14px;
+    }
+    
+    .btn-schedule, .btn-interactive {
+        padding: 14px 20px;
+        font-size: 14px;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .cta-action-card h2 {
+        font-size: 20px;
+    }
+    
+    .use-case-cta-container h3 {
+        font-size: 18px;
+    }
+    
+    .step-card-new {
+        padding: 20px;
+    }
+    
+    .step-number-badge {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+    
+    .code-block {
+        padding: 15px;
+        font-size: 12px;
+    }
+    
+    .ready-to-build h3 {
+        font-size: 22px;
+    }
+    
+    .networks-card h3 {
+        font-size: 22px;
+    }
+    
+    .network-logo-item {
+        padding: 15px;
+    }
+    
+    .api-stack-section h2 {
+        font-size: 24px;
+    }
+    
+    .api-tool-card h4 {
+        font-size: 16px;
+    }
+    
+    .resource-card h4 {
+        font-size: 18px;
+    }
+    
     .final-cta h2 {
         font-size: 28px;
+    }
+    
+    .footer {
+        padding: 50px 0 30px;
+    }
+    
+    .footer-brand .logo img {
+        height: 32px;
     }
     
     .footer-links {
         grid-template-columns: 1fr;
         gap: 32px;
+    }
+    
+    .footer-column h4 {
+        font-size: 15px;
+    }
+    
+    .footer-column ul li a {
+        font-size: 14px;
     }
 }
 
