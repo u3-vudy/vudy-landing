@@ -57,7 +57,7 @@ function initHeroSlider() {
     const dots = document.querySelectorAll('.slider-dot');
     let currentSlide = 0;
     let autoplayInterval;
-    const AUTOPLAY_DELAY = 6000; // 6 seconds
+    const AUTOPLAY_DELAY = 3000; // 3 seconds
 
     function showSlide(index) {
         // Remove active class from all slides and dots
