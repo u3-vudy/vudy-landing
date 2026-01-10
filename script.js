@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initSmoothScroll();
     initStatsCounter();
+    initModals();
 });
 
 // ========================================
@@ -632,4 +633,81 @@ function animateFloatingCards() {
 if (floatingCards.length > 0) {
     animateFloatingCards();
 }
+// ========================================
+// MODALS (Terms & Privacy)
+// ========================================
+function initModals() {
+    // Terms Modal
+    const openTermsBtn = document.getElementById('openTermsModal');
+    const closeTermsBtn = document.getElementById('closeTermsModal');
+    const termsModal = document.getElementById('termsModal');
 
+    // Privacy Modal
+    const openPrivacyBtn = document.getElementById('openPrivacyModal');
+    const closePrivacyBtn = document.getElementById('closePrivacyModal');
+    const privacyModal = document.getElementById('privacyModal');
+
+    function openModal(modal) {
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeModal(modal) {
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Terms Modal handlers
+    if (openTermsBtn) {
+        openTermsBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal(termsModal);
+        });
+    }
+    if (closeTermsBtn) {
+        closeTermsBtn.addEventListener('click', function() {
+            closeModal(termsModal);
+        });
+    }
+
+    // Privacy Modal handlers
+    if (openPrivacyBtn) {
+        openPrivacyBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openModal(privacyModal);
+        });
+    }
+    if (closePrivacyBtn) {
+        closePrivacyBtn.addEventListener('click', function() {
+            closeModal(privacyModal);
+        });
+    }
+
+    // Close modals when clicking outside
+    if (termsModal) {
+        termsModal.addEventListener('click', function(e) {
+            if (e.target === termsModal) {
+                closeModal(termsModal);
+            }
+        });
+    }
+    if (privacyModal) {
+        privacyModal.addEventListener('click', function(e) {
+            if (e.target === privacyModal) {
+                closeModal(privacyModal);
+            }
+        });
+    }
+
+    // Close any open modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal(termsModal);
+            closeModal(privacyModal);
+        }
+    });
+}
