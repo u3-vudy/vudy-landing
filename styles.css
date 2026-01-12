@@ -2240,9 +2240,12 @@ input {
     padding: 16px 32px;
     background: var(--color-primary);
     color: #fff;
+    border: none;
     border-radius: 12px;
     font-size: 16px;
     font-weight: 500;
+    font-family: var(--font-primary);
+    cursor: pointer;
     transition: all 0.2s ease;
 }
 
@@ -4285,25 +4288,110 @@ input {
     background: rgba(79, 255, 176, 0.1);
 }
 
+/* Contact Modal Styles */
+.modal-contact {
+    max-width: 600px;
+}
+
+.modal-subtitle {
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin-bottom: 32px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    font-family: var(--font-primary);
+    color: var(--text-primary);
+    background: var(--bg-card);
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(13, 74, 74, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.btn-submit {
+    margin-top: 8px;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Dark theme for contact form */
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea {
+    background: var(--bg-card-alt);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group textarea:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(79, 255, 176, 0.1);
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
     .modal-container {
         max-height: 90vh;
         border-radius: var(--radius-lg);
     }
-    
+
     .modal-content {
         padding: 32px 24px;
     }
-    
+
     .modal-content h1 {
         font-size: 1.4rem;
     }
-    
+
     .modal-close {
         top: 16px;
         right: 16px;
         width: 40px;
         height: 40px;
+    }
+    
+    .modal-contact {
+        max-width: 100%;
     }
 }

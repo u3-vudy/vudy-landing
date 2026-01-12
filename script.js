@@ -433,12 +433,15 @@ function initScrollAnimations() {
 // SMOOTH SCROLL
 // ========================================
 function initSmoothScroll() {
-    const links = document.querySelectorAll('a[href^="#"]');
+    const links = document.querySelectorAll('a[href^="#"]:not([id^="open"])');
     
     links.forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
-            if (href === '#') return;
+            if (href === '#') {
+                e.preventDefault();
+                return;
+            }
             
             e.preventDefault();
             const target = document.querySelector(href);
@@ -634,7 +637,7 @@ if (floatingCards.length > 0) {
     animateFloatingCards();
 }
 // ========================================
-// MODALS (Terms & Privacy)
+// MODALS (Terms, Privacy & Contact)
 // ========================================
 function initModals() {
     // Terms Modal
@@ -646,6 +649,12 @@ function initModals() {
     const openPrivacyBtn = document.getElementById('openPrivacyModal');
     const closePrivacyBtn = document.getElementById('closePrivacyModal');
     const privacyModal = document.getElementById('privacyModal');
+
+    // Contact Modal
+    const openContactBtn = document.getElementById('openContactModal');
+    const closeContactBtn = document.getElementById('closeContactModal');
+    const contactModal = document.getElementById('contactModal');
+    const contactForm = document.getElementById('contactForm');
 
     function openModal(modal) {
         if (modal) {
@@ -687,6 +696,105 @@ function initModals() {
         });
     }
 
+    // Contact Modal handlers
+    if (openContactBtn) {
+        openContactBtn.addEventListener('click', function() {
+            openModal(contactModal);
+        });
+    }
+    if (closeContactBtn) {
+        closeContactBtn.addEventListener('click', function() {
+            closeModal(contactModal);
+        });
+    }
+
+    // Contact Form submission
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = contactForm.querySelector('.btn-submit');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Sending...';
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('contactName').value,
+                email: document.getElementById('contactEmail').value,
+                company: document.getElementById('contactCompany').value,
+                useCase: document.getElementById('contactUseCase').value,
+                message: document.getElementById('contactMessage').value
+            };
+            
+            // ClickUp API configuration
+            const CLICKUP_API_KEY = 'JQF5J7QC4L0J6TIWXIRFU9GNZFS9DFYFJOQYWZU5UPGITMLM2TG1LAHR1RKDL0FX';
+            const CLICKUP_LIST_ID = '901112892172';
+            
+            // Create task description
+            const description = `**Contact Information:**
+Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company || 'N/A'}
+
+**Use Case:**
+${formData.useCase}
+
+**Additional Details:**
+${formData.message || 'N/A'}`;
+            
+            // Create task in ClickUp
+            try {
+                const response = await fetch(`https://api.clickup.com/api/v2/list/${CLICKUP_LIST_ID}/task`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': CLICKUP_API_KEY,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: `New Lead: ${formData.name} - ${formData.useCase.substring(0, 50)}`,
+                        description: description,
+                        tags: ['website-lead'],
+                        priority: 3,
+                        status: 'to do'
+                    })
+                });
+                
+                if (response.ok) {
+                    // Success
+                    submitBtn.innerHTML = '✓ Sent Successfully!';
+                    submitBtn.style.background = '#10b981';
+                    
+                    // Close modal and reset form after delay
+                    setTimeout(() => {
+                        closeModal(contactModal);
+                        contactForm.reset();
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.style.background = '';
+                    }, 2000);
+                } else {
+                    throw new Error('Failed to send');
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                
+                // Show error state
+                submitBtn.innerHTML = '✗ Error. Please try again.';
+                submitBtn.style.background = '#ef4444';
+                
+                // Reset button after delay
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.style.background = '';
+                }, 3000);
+            }
+        });
+    }
+
     // Close modals when clicking outside
     if (termsModal) {
         termsModal.addEventListener('click', function(e) {
@@ -702,12 +810,20 @@ function initModals() {
             }
         });
     }
+    if (contactModal) {
+        contactModal.addEventListener('click', function(e) {
+            if (e.target === contactModal) {
+                closeModal(contactModal);
+            }
+        });
+    }
 
     // Close any open modal with Escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closeModal(termsModal);
             closeModal(privacyModal);
+            closeModal(contactModal);
         }
     });
 }

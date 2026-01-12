@@ -827,12 +827,12 @@
             <!-- Use Case CTA -->
             <div class="use-case-cta-container">
                 <h3>Don't see your use case?</h3>
-                <a href="#" class="btn-solve">
+                <button type="button" class="btn-solve" id="openContactModal">
                     Lets solve it together.
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M4 10H16M12 6L16 10L12 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                </a>
+                </button>
             </div>
         </div>
     </section>
@@ -1295,6 +1295,55 @@ console.<span class="code-function">log</span>(<span class="code-string">'Connec
             </div>
         </div>
     </footer>
+
+    <!-- Contact Form Modal -->
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-container modal-contact">
+            <button class="modal-close" id="closeContactModal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="modal-content">
+                <h2>Let's solve it together</h2>
+                <p class="modal-subtitle">Tell us about your use case and we'll get back to you soon.</p>
+                
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="contactName">Name *</label>
+                        <input type="text" id="contactName" name="name" required placeholder="Your name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contactEmail">Email *</label>
+                        <input type="email" id="contactEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contactCompany">Company</label>
+                        <input type="text" id="contactCompany" name="company" placeholder="Your company name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contactUseCase">Use Case *</label>
+                        <textarea id="contactUseCase" name="useCase" required rows="4" placeholder="Describe your use case..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contactMessage">Additional Details</label>
+                        <textarea id="contactMessage" name="message" rows="4" placeholder="Any additional information you'd like to share..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary btn-large btn-submit">
+                        Send
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10H16M12 6L16 10L12 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Privacy Modal -->
     <div id="privacyModal" class="modal-overlay">
