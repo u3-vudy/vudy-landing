@@ -2562,28 +2562,67 @@ input {
     margin-right: auto;
 }
 
-.networks-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+/* Networks Carousel */
+.networks-carousel {
+    width: 100%;
+    overflow: hidden;
     margin-bottom: 40px;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.networks-track {
+    display: flex;
+    gap: 24px;
+    animation: scroll-networks 30s linear infinite;
+    width: max-content;
+}
+
+.networks-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-networks {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 .network-card {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 16px;
-    padding: 24px;
+    padding: 20px 32px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-width: 140px;
+    transition: all 0.3s ease;
+}
+
+.network-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 24px rgba(13, 74, 74, 0.15);
 }
 
 .network-logo {
-    font-size: 18px;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.network-name {
+    font-size: 14px;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.6);
-    padding: 20px 0;
+    color: var(--text-primary);
+    text-align: center;
 }
 
 .network-cta {
@@ -3324,8 +3363,19 @@ input {
         grid-template-columns: 1fr;
     }
     
-    .networks-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .networks-carousel {
+        mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    }
+    
+    .network-card {
+        min-width: 120px;
+        padding: 16px 24px;
+    }
+    
+    .network-logo {
+        width: 40px;
+        height: 40px;
     }
     
     .network-logos {
