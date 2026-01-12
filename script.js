@@ -729,40 +729,19 @@ function initModals() {
                 message: document.getElementById('contactMessage').value
             };
             
-            // ClickUp API configuration
-            const CLICKUP_API_KEY = 'JQF5J7QC4L0J6TIWXIRFU9GNZFS9DFYFJOQYWZU5UPGITMLM2TG1LAHR1RKDL0FX';
-            const CLICKUP_LIST_ID = '901112892172';
-            
-            // Create task description
-            const description = `**Contact Information:**
-Name: ${formData.name}
-Email: ${formData.email}
-Company: ${formData.company || 'N/A'}
-
-**Use Case:**
-${formData.useCase}
-
-**Additional Details:**
-${formData.message || 'N/A'}`;
-            
-            // Create task in ClickUp
+            // Submit to Vercel serverless function
             try {
-                const response = await fetch(`https://api.clickup.com/api/v2/list/${CLICKUP_LIST_ID}/task`, {
+                const response = await fetch('/api/contact', {
                     method: 'POST',
                     headers: {
-                        'Authorization': CLICKUP_API_KEY,
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        name: `New Lead: ${formData.name} - ${formData.useCase.substring(0, 50)}`,
-                        description: description,
-                        tags: ['website-lead'],
-                        priority: 3,
-                        status: 'to do'
-                    })
+                    body: JSON.stringify(formData)
                 });
                 
-                if (response.ok) {
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
                     // Success
                     submitBtn.innerHTML = '✓ Sent Successfully!';
                     submitBtn.style.background = '#10b981';
@@ -776,7 +755,7 @@ ${formData.message || 'N/A'}`;
                         submitBtn.style.background = '';
                     }, 2000);
                 } else {
-                    throw new Error('Failed to send');
+                    throw new Error(result.error || 'Failed to send');
                 }
             } catch (error) {
                 console.error('Error submitting form:', error);
