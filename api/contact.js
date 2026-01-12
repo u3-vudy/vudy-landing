@@ -1,4 +1,6 @@
 // Vercel Serverless Function to handle ClickUp form submissions
+const https = require('https');
+
 module.exports = async (req, res) => {
     // Enable CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -23,7 +25,7 @@ module.exports = async (req, res) => {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
-        // ClickUp API configuration (from environment variables for security)
+        // ClickUp API configuration
         const CLICKUP_API_KEY = process.env.CLICKUP_API_KEY || 'JQF5J7QC4L0J6TIWXIRFU9GNZFS9DFYFJOQYWZU5UPGITMLM2TG1LAHR1RKDL0FX';
         const CLICKUP_LIST_ID = process.env.CLICKUP_LIST_ID || '901112892172';
 
@@ -39,38 +41,70 @@ ${useCase}
 **Additional Details:**
 ${message || 'N/A'}`;
 
-        // Create task in ClickUp
-        const response = await fetch(`https://api.clickup.com/api/v2/list/${CLICKUP_LIST_ID}/task`, {
-            method: 'POST',
-            headers: {
-                'Authorization': CLICKUP_API_KEY,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: `New Lead: ${name} - ${useCase.substring(0, 50)}`,
-                description: description,
-                tags: ['website-lead'],
-                priority: 3,
-                status: 'to do'
-            })
+        // Prepare ClickUp task data
+        const taskData = JSON.stringify({
+            name: `New Lead: ${name} - ${useCase.substring(0, 50)}`,
+            description: description,
+            tags: ['website-lead'],
+            priority: 3
         });
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error('ClickUp API Error:', errorData);
-            throw new Error('Failed to create task in ClickUp');
-        }
+        // Make request to ClickUp API
+        const clickupResponse = await new Promise((resolve, reject) => {
+            const options = {
+                hostname: 'api.clickup.com',
+                path: `/api/v2/list/${CLICKUP_LIST_ID}/task`,
+                method: 'POST',
+                headers: {
+                    'Authorization': CLICKUP_API_KEY,
+                    'Content-Type': 'application/json',
+                    'Content-Length': Buffer.byteLength(taskData)
+                }
+            };
 
-        const data = await response.json();
+            const apiReq = https.request(options, (apiRes) => {
+                let data = '';
+
+                apiRes.on('data', (chunk) => {
+                    data += chunk;
+                });
+
+                apiRes.on('end', () => {
+                    if (apiRes.statusCode >= 200 && apiRes.statusCode < 300) {
+                        resolve({ success: true, data: JSON.parse(data) });
+                    } else {
+                        console.error('ClickUp Error Response:', data);
+                        resolve({ success: false, error: data, statusCode: apiRes.statusCode });
+                    }
+                });
+            });
+
+            apiReq.on('error', (error) => {
+                console.error('Request Error:', error);
+                reject(error);
+            });
+
+            apiReq.write(taskData);
+            apiReq.end();
+        });
+
+        if (!clickupResponse.success) {
+            console.error('ClickUp API Error:', clickupResponse);
+            return res.status(500).json({ 
+                error: 'Failed to create task',
+                message: 'Could not create task in ClickUp',
+                details: clickupResponse.error
+            });
+        }
         
         return res.status(200).json({ 
             success: true, 
             message: 'Contact form submitted successfully',
-            taskId: data.id 
+            taskId: clickupResponse.data.id 
         });
 
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Server Error:', error);
         return res.status(500).json({ 
             error: 'Internal server error',
             message: error.message 
