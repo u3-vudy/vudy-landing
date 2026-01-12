@@ -49,6 +49,18 @@ ${message || 'N/A'}`;
             priority: 3
         });
 
+        // Verify API key exists
+        if (!CLICKUP_API_KEY || CLICKUP_API_KEY === 'undefined') {
+            console.error('ClickUp API Key is missing!');
+            return res.status(500).json({ 
+                error: 'Configuration error',
+                message: 'ClickUp API key is not configured'
+            });
+        }
+
+        console.log('Using API Key (first 10 chars):', CLICKUP_API_KEY.substring(0, 10) + '...');
+        console.log('Using List ID:', CLICKUP_LIST_ID);
+
         // Make request to ClickUp API
         const clickupResponse = await new Promise((resolve, reject) => {
             const options = {
