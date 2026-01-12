@@ -181,12 +181,10 @@ input {
 }
 
 .logo-dark {
-    display: none;
 }
 
 /* Dark mode: show light logo, hide dark logo */
 [data-theme="dark"] .logo-light {
-    display: none;
 }
 
 [data-theme="dark"] .logo-dark {
@@ -242,11 +240,9 @@ input {
 }
 
 .theme-toggle .moon-icon {
-    display: none;
 }
 
 [data-theme="dark"] .theme-toggle .sun-icon {
-    display: none;
 }
 
 [data-theme="dark"] .theme-toggle .moon-icon {
@@ -274,7 +270,6 @@ input {
 }
 
 .mobile-menu-btn {
-    display: none;
     flex-direction: column;
     gap: 5px;
     padding: 4px;
@@ -359,7 +354,6 @@ input {
 }
 
 .hero-slide:not(.active) {
-    display: none;
 }
 
 /* Background Pattern */
@@ -601,7 +595,6 @@ input {
     gap: 12px;
     padding: 12px 14px;
     border-radius: 10px;
-    font-size: 14px;
     color: #888;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -695,7 +688,6 @@ input {
     border: none;
     border-radius: 10px;
     color: #fff;
-    font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     transition: background 0.2s ease;
@@ -715,7 +707,6 @@ input {
     justify-content: space-between;
     align-items: center;
     padding: 14px 0;
-    font-size: 14px;
     font-weight: 500;
     color: #333;
     border-bottom: 1px solid #f0f0f0;
@@ -760,7 +751,6 @@ input {
     border-radius: 50%;
     color: #fff;
     font-weight: 700;
-    font-size: 14px;
 }
 
 .token-details {
@@ -769,7 +759,6 @@ input {
 
 .token-details strong {
     display: block;
-    font-size: 14px;
     color: #333;
 }
 
@@ -779,7 +768,6 @@ input {
 }
 
 .token-amount {
-    font-size: 14px;
     font-weight: 500;
     color: #555;
 }
@@ -853,7 +841,6 @@ input {
     justify-content: space-between;
     padding: 12px 0;
     border-bottom: 1px solid #eee;
-    font-size: 14px;
 }
 
 .popup-row span {
@@ -905,7 +892,6 @@ input {
     color: #fff;
     border: none;
     border-radius: 10px;
-    font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     margin-bottom: 10px;
@@ -923,7 +909,6 @@ input {
     color: #666;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
-    font-size: 14px;
     cursor: pointer;
 }
 
@@ -1253,7 +1238,6 @@ input {
     background: #f0f0f0;
     border: none;
     border-radius: 50%;
-    font-size: 14px;
     color: #666;
     cursor: pointer;
 }
@@ -1557,7 +1541,6 @@ input {
 
 .section-label {
     display: inline-block;
-    font-size: 14px;
     font-weight: 600;
     color: var(--color-primary);
     text-transform: uppercase;
@@ -1590,7 +1573,7 @@ input {
 .card-top {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: stretch;
     margin-bottom: 20px;
 }
 
@@ -1625,7 +1608,6 @@ input {
 }
 
 .feature-card-new p {
-    font-size: 14px;
     color: var(--text-secondary);
     line-height: 1.7;
 }
@@ -1660,19 +1642,30 @@ input {
 /* Features CTA */
 .features-cta {
     text-align: center;
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
 .features-cta .btn-primary {
     padding: 18px 40px;
     font-size: 16px;
+    width: auto;
+    max-width: 100%;
 }
 
+@media (max-width: 768px) {
+    .features-cta .btn-primary {
+        padding: 16px 32px;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
+    }
+}
 /* ========================================
    STATS SECTION
    ======================================== */
 .stats-section {
-    padding: 80px 0;
+    padding: 40px 0;
     background: var(--bg-secondary);
 }
 
@@ -1709,9 +1702,9 @@ input {
 }
 
 .stats-title {
+    font-size: 24px;
     display: block;
     text-align: center;
-    font-size: 14px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.8);
     letter-spacing: 3px;
@@ -1854,7 +1847,6 @@ input {
 }
 
 .problem-section p {
-    font-size: 14px;
     color: var(--text-secondary);
     line-height: 1.6;
     margin: 0;
@@ -1865,7 +1857,6 @@ input {
 }
 
 .solution-text {
-    font-size: 14px;
     color: var(--text-primary);
     line-height: 1.6;
     margin: 0;
@@ -1912,7 +1903,6 @@ input {
     color: var(--text-primary);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    font-size: 14px;
     font-weight: 500;
     transition: all 0.2s ease;
 }
@@ -1929,7 +1919,6 @@ input {
     background: var(--color-primary);
     color: #fff;
     border-radius: 8px;
-    font-size: 14px;
     font-weight: 500;
     transition: all 0.2s ease;
 }
@@ -1942,7 +1931,7 @@ input {
    CTA DEMO SECTION
    ======================================== */
 .cta-demo-section {
-    padding: 80px 0;
+    padding: 40px 0;
     background: var(--bg-secondary);
 }
 
@@ -2091,7 +2080,7 @@ input {
 .use-case-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: stretch;
     margin-bottom: 20px;
 }
 
@@ -2123,7 +2112,6 @@ input {
 }
 
 .use-case-card > p {
-    font-size: 14px;
     color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: 20px;
@@ -2161,7 +2149,6 @@ input {
 
 .challenge-box p,
 .solution-box p {
-    font-size: 14px;
     color: var(--text-primary);
     margin: 0;
     line-height: 1.5;
@@ -2194,7 +2181,6 @@ input {
 }
 
 .stat-desc {
-    font-size: 14px;
     color: var(--text-secondary);
     line-height: 1.4;
 }
@@ -2209,7 +2195,6 @@ input {
     color: var(--text-primary);
     border: 1px solid var(--border-color);
     border-radius: 10px;
-    font-size: 14px;
     font-weight: 500;
     transition: all 0.2s ease;
 }
@@ -2286,7 +2271,6 @@ input {
     background: rgba(13, 74, 74, 0.08);
     color: var(--color-primary);
     border-radius: var(--radius-full);
-    font-size: 14px;
     font-weight: 500;
     margin-bottom: 20px;
 }
@@ -2298,7 +2282,7 @@ input {
 /* Steps Row */
 .steps-row {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     justify-content: center;
     gap: 20px;
     margin-top: 50px;
@@ -2306,6 +2290,8 @@ input {
 }
 
 .step-card {
+    display: flex;
+    flex-direction: column;
     flex: 1;
     max-width: 320px;
     background: var(--bg-card);
@@ -2354,7 +2340,6 @@ input {
 }
 
 .step-card p {
-    font-size: 14px;
     color: var(--text-secondary);
     line-height: 1.6;
     margin: 0;
@@ -2372,11 +2357,13 @@ input {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
-    align-items: start;
+    align-items: stretch;
 }
 
 /* Code Block */
 .code-block {
+    display: flex;
+    flex-direction: column;
     background: #1a2e2e;
     border-radius: 20px;
     overflow: hidden;
@@ -2411,6 +2398,7 @@ input {
 }
 
 .code-content {
+    flex: 1;
     padding: 24px;
 }
 
@@ -2522,7 +2510,7 @@ input {
    SUPPORTED NETWORKS SECTION
    ======================================== */
 .networks-section {
-    padding: 80px 0;
+    padding: 40px 0;
     background: var(--bg-secondary);
     position: relative;
     overflow: hidden;
@@ -2610,6 +2598,33 @@ input {
     color: #fff;
 }
 
+/* Chain Suggestion Button */
+.chain-suggestion-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    margin: 30px auto 20px;
+    transition: all 0.3s ease;
+}
+
+.chain-suggestion-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.chain-suggestion-btn svg {
+    flex-shrink: 0;
+}
+
 .expand-btn {
     width: 48px;
     height: 48px;
@@ -2678,7 +2693,7 @@ input {
 .api-tool-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: stretch;
     margin-bottom: 16px;
 }
 
@@ -2715,7 +2730,6 @@ input {
 }
 
 .api-tool-card p {
-    font-size: 14px;
     color: var(--text-secondary);
     line-height: 1.6;
     margin: 0;
@@ -2785,7 +2799,6 @@ input {
 }
 
 .resource-card p {
-    font-size: 14px;
     opacity: 0.8;
     line-height: 1.6;
     margin-bottom: auto;
@@ -2817,7 +2830,6 @@ input {
     background: var(--color-primary);
     color: #fff;
     border-radius: 10px;
-    font-size: 14px;
     font-weight: 500;
     margin-top: 20px;
     transition: all 0.2s ease;
@@ -2922,7 +2934,6 @@ input {
 }
 
 .author-role {
-    font-size: 14px;
     color: var(--color-gray-500);
 }
 
@@ -3094,7 +3105,6 @@ input {
 }
 
 .footer-column h4 {
-    font-size: 14px;
     font-weight: 600;
     color: var(--color-white);
     text-transform: uppercase;
@@ -3110,7 +3120,6 @@ input {
 
 .footer-column a {
     color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
 }
 
 .footer-column a:hover {
@@ -3126,14 +3135,12 @@ input {
 }
 
 .footer-bottom p {
-    font-size: 14px;
     color: rgba(255, 255, 255, 0.5);
 }
 
 .footer-badges {
     display: flex;
     gap: 24px;
-    font-size: 14px;
     color: rgba(255, 255, 255, 0.7);
 }
 
@@ -3368,6 +3375,18 @@ input {
     .nav-links {
         display: none;
     }
+
+    .code-block {
+        display: none !important;
+    }
+
+    .developer-section {
+        display: block;
+    }
+
+    .developer-content {
+        width: 100%;
+    }
     
     .mobile-menu-btn {
         display: flex;
@@ -3406,7 +3425,6 @@ input {
     .btn-outline-dark,
     .btn-primary {
         padding: 14px 24px;
-        font-size: 14px;
         min-width: 130px;
     }
     
@@ -3598,7 +3616,6 @@ input {
     }
     
     .footer-brand p {
-        font-size: 14px;
     }
 }
 
@@ -3621,7 +3638,6 @@ input {
     }
     
     .hero-text p {
-        font-size: 14px;
     }
     
     .hero-buttons {
@@ -3659,7 +3675,6 @@ input {
     }
     
     .section-header p {
-        font-size: 14px;
     }
     
     .features, .products-section, .use-cases, .how-it-works-new, .api-stack-section {
@@ -3693,12 +3708,10 @@ input {
     }
     
     .cta-demo-container p {
-        font-size: 14px;
     }
     
     .btn-schedule, .btn-interactive {
         padding: 14px 20px;
-        font-size: 14px;
         width: 100%;
         justify-content: center;
     }
@@ -3772,7 +3785,6 @@ input {
     }
     
     .footer-column ul li a {
-        font-size: 14px;
     }
 }
 
@@ -4012,7 +4024,6 @@ input {
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(4px);
     z-index: 10000;
-    display: none;
     justify-content: center;
     align-items: center;
     padding: 20px;
