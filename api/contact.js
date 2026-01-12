@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
         }
 
         // ClickUp API configuration
-        const CLICKUP_API_KEY = process.env.CLICKUP_API_KEY || 'JQF5J7QC4L0J6TIWXIRFU9GNZFS9DFYFJOQYWZU5UPGITMLM2TG1LAHR1RKDL0FX';
+        const CLICKUP_API_KEY = process.env.CLICKUP_API_KEY || 'K4BXLCLK47DS6E8GF1SUBVZNNUCU5B2OWGCRB4UQ7U3K7LFJYRWARHELU0CRHU17';
         const CLICKUP_LIST_ID = process.env.CLICKUP_LIST_ID || '901112892172';
 
         // Create task description
