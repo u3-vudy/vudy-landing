@@ -2562,6 +2562,141 @@ input {
     margin-right: auto;
 }
 
+/* ========================================
+   PARTNERS SECTION
+   ======================================== */
+.partners-section {
+    padding: 60px 0;
+    background: var(--bg-main);
+    overflow: hidden;
+}
+
+.partners-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.partners-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(13, 74, 74, 0.1);
+    color: var(--color-primary);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+}
+
+[data-theme="dark"] .partners-badge {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-accent);
+}
+
+.partners-header h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.partners-header p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Partners Carousel */
+.partners-carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.partners-track {
+    display: flex;
+    gap: 40px;
+    animation: scroll-partners 25s linear infinite;
+    width: max-content;
+    align-items: center;
+}
+
+.partners-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-partners {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.partner-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+    height: 80px;
+    padding: 16px 24px;
+    transition: all 0.3s ease;
+}
+
+.partner-card:hover {
+    transform: scale(1.05);
+}
+
+.partner-logo {
+    max-width: 140px;
+    max-height: 50px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.partner-card:hover .partner-logo {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* For logos that need inverted colors in dark mode */
+[data-theme="dark"] .partner-logo-dark {
+    filter: grayscale(100%) brightness(0) invert(1);
+    opacity: 0.7;
+}
+
+[data-theme="dark"] .partner-card:hover .partner-logo-dark {
+    filter: brightness(0) invert(1);
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .partners-section {
+        padding: 40px 0;
+    }
+    
+    .partners-header h2 {
+        font-size: 24px;
+    }
+    
+    .partner-card {
+        min-width: 120px;
+        height: 60px;
+    }
+    
+    .partner-logo {
+        max-width: 100px;
+        max-height: 40px;
+    }
+}
+
 /* Networks Carousel */
 .networks-carousel {
     width: 100%;
@@ -2593,8 +2728,8 @@ input {
 }
 
 .network-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    background: transparent;
+    border: none;
     border-radius: 16px;
     padding: 20px 32px;
     display: flex;
@@ -2608,20 +2743,18 @@ input {
 
 .network-card:hover {
     transform: translateY(-4px);
-    border-color: var(--color-primary);
-    box-shadow: 0 8px 24px rgba(13, 74, 74, 0.15);
 }
 
 .network-logo {
-    width: 48px;
-    height: 48px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
 }
 
 .network-name {
     font-size: 14px;
     font-weight: 500;
-    color: var(--text-primary);
+    color: #fff;
     text-align: center;
 }
 
@@ -3374,8 +3507,8 @@ input {
     }
     
     .network-logo {
-        width: 40px;
-        height: 40px;
+        width: 70px;
+        height: 70px;
     }
     
     .network-logos {
