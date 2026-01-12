@@ -65,7 +65,7 @@ ${message || 'N/A'}`;
         const clickupResponse = await new Promise((resolve, reject) => {
             const options = {
                 hostname: 'api.clickup.com',
-                path: `/api/v2/list/${CLICKUP_LIST_ID}/task`,
+                path: `/api/v2/list/${CLICKUP_LIST_ID}/task?custom_task_ids=false`,
                 method: 'POST',
                 headers: {
                     'Authorization': CLICKUP_API_KEY,
