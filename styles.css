@@ -181,10 +181,12 @@ input {
 }
 
 .logo-dark {
+    display: none;
 }
 
 /* Dark mode: show light logo, hide dark logo */
 [data-theme="dark"] .logo-light {
+    display: none;
 }
 
 [data-theme="dark"] .logo-dark {
@@ -240,9 +242,11 @@ input {
 }
 
 .theme-toggle .moon-icon {
+    display: none;
 }
 
 [data-theme="dark"] .theme-toggle .sun-icon {
+    display: none;
 }
 
 [data-theme="dark"] .theme-toggle .moon-icon {
@@ -4016,6 +4020,7 @@ input {
    MODAL STYLES
    ======================================== */
 .modal-overlay {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
