@@ -3,6 +3,10 @@
     "api/contact.js": {
       "memory": 1024,
       "maxDuration": 10
+    },
+    "api/schedule-call.js": {
+      "memory": 1024,
+      "maxDuration": 10
     }
   }
 }
