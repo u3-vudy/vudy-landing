@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScroll();
     initStatsCounter();
     initModals();
+    initUseCasesCarousel();
+    initProductsCarousel();
 });
 
 // ========================================
@@ -909,4 +911,416 @@ function initModals() {
             closeModal(scheduleCallModal);
         }
     });
+}
+
+// ========================================
+// USE CASES CAROUSEL (Mobile/Tablet only)
+// ========================================
+function initUseCasesCarousel() {
+    const carousel = document.querySelector('.use-cases-grid');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+    
+    if (!carousel || !prevBtn || !nextBtn) return;
+    
+    // Only enable carousel on tablet and mobile
+    function isCarouselEnabled() {
+        return window.innerWidth <= 1024;
+    }
+    
+    // Skip initialization on desktop
+    if (!isCarouselEnabled()) {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        return;
+    }
+    
+    const cards = carousel.querySelectorAll('.use-case-card');
+    const cardWidth = cards[0]?.offsetWidth || 0;
+    const gap = 24;
+    const scrollAmount = cardWidth + gap;
+    
+    // Update button states based on scroll position
+    function updateButtons() {
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        const currentScroll = carousel.scrollLeft;
+        
+        prevBtn.disabled = currentScroll <= 0;
+        nextBtn.disabled = currentScroll >= maxScroll - 5; // -5 for tolerance
+    }
+    
+    // Scroll to next cards
+    function scrollNext() {
+        const isMobile = window.innerWidth <= 768;
+        const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+        
+        let scrollBy = scrollAmount;
+        
+        if (isMobile || isTablet) {
+            // On mobile/tablet, scroll one card at a time
+            scrollBy = carousel.offsetWidth * 0.85;
+        } else {
+            // On desktop, scroll 3 cards
+            scrollBy = scrollAmount * 3;
+        }
+        
+        carousel.scrollBy({
+            left: scrollBy,
+            behavior: 'smooth'
+        });
+    }
+    
+    // Scroll to previous cards
+    function scrollPrev() {
+        const isMobile = window.innerWidth <= 768;
+        const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+        
+        let scrollBy = scrollAmount;
+        
+        if (isMobile || isTablet) {
+            scrollBy = carousel.offsetWidth * 0.85;
+        } else {
+            scrollBy = scrollAmount * 3;
+        }
+        
+        carousel.scrollBy({
+            left: -scrollBy,
+            behavior: 'smooth'
+        });
+    }
+    
+    // Button click handlers
+    prevBtn.addEventListener('click', scrollPrev);
+    nextBtn.addEventListener('click', scrollNext);
+    
+    // Update buttons on scroll
+    carousel.addEventListener('scroll', updateButtons);
+    
+    // Update buttons on window resize
+    window.addEventListener('resize', updateButtons);
+    
+    // Touch/Swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isDragging = false;
+    
+    carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        isDragging = true;
+    }, { passive: true });
+    
+    carousel.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        touchEndX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    
+    carousel.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swiped left - next
+                scrollNext();
+            } else {
+                // Swiped right - previous
+                scrollPrev();
+            }
+        }
+        
+        isDragging = false;
+    }, { passive: true });
+    
+    // Initial button state
+    updateButtons();
+}
+
+// ========================================
+// PRODUCTS CAROUSEL (INFINITE LOOP)
+// ========================================
+function initProductsCarousel() {
+    const carousel = document.querySelector('.products-grid');
+    const prevBtn = document.querySelector('.carousel-prev-products');
+    const nextBtn = document.querySelector('.carousel-next-products');
+    const dots = document.querySelectorAll('.carousel-dot');
+    
+    if (!carousel || !prevBtn || !nextBtn) return;
+    
+    const cards = carousel.querySelectorAll('.product-card');
+    const totalCards = cards.length; // 6 cards total (3 original + 3 duplicates)
+    const realCardsCount = 3; // Only 3 real cards
+    const gap = 24;
+    let autoplayInterval;
+    let isScrolling = false;
+    const AUTOPLAY_DELAY = 5000; // 5 seconds
+    
+    // Get card width dynamically
+    function getCardWidth() {
+        return cards[0]?.offsetWidth || 0;
+    }
+    
+    // Get scroll amount based on screen size
+    function getScrollAmount() {
+        const isMobile = window.innerWidth <= 768;
+        const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+        const cardWidth = getCardWidth();
+        
+        if (isMobile || isTablet) {
+            return cardWidth + gap;
+        } else {
+            return (cardWidth + gap) * 2;
+        }
+    }
+    
+    // Get current logical index (0-2) based on scroll position
+    function getCurrentIndex() {
+        const cardWidth = getCardWidth();
+        const scrollPos = carousel.scrollLeft;
+        const cardIndex = Math.round(scrollPos / (cardWidth + gap));
+        return cardIndex % realCardsCount;
+    }
+    
+    // Update button states and dots
+    function updateButtons() {
+        // Buttons are never disabled for infinite loop
+        prevBtn.disabled = false;
+        nextBtn.disabled = false;
+        
+        // Update dots based on current logical position
+        const currentIndex = getCurrentIndex();
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+    
+    // Check if we need to loop and handle it
+    function handleInfiniteLoop() {
+        if (isScrolling) return;
+        
+        const cardWidth = getCardWidth();
+        const scrollPos = carousel.scrollLeft;
+        const cardIndex = Math.round(scrollPos / (cardWidth + gap));
+        
+        // If we're viewing duplicate cards (index >= 3), jump back to original
+        if (cardIndex >= realCardsCount) {
+            isScrolling = true;
+            const targetIndex = cardIndex % realCardsCount;
+            carousel.scrollTo({
+                left: targetIndex * (cardWidth + gap),
+                behavior: 'instant'
+            });
+            setTimeout(() => {
+                isScrolling = false;
+                updateButtons();
+            }, 50);
+        }
+        // If we're at negative position, jump to the end
+        else if (cardIndex < 0) {
+            isScrolling = true;
+            carousel.scrollTo({
+                left: (realCardsCount - 1) * (cardWidth + gap),
+                behavior: 'instant'
+            });
+            setTimeout(() => {
+                isScrolling = false;
+                updateButtons();
+            }, 50);
+        }
+    }
+    
+    // Autoplay functions
+    function startAutoplay() {
+        autoplayInterval = setInterval(() => {
+            scrollNext();
+        }, AUTOPLAY_DELAY);
+    }
+    
+    function stopAutoplay() {
+        clearInterval(autoplayInterval);
+    }
+    
+    function resetAutoplay() {
+        stopAutoplay();
+        startAutoplay();
+    }
+    
+    // Scroll to next cards
+    function scrollNext() {
+        if (isScrolling) return;
+        
+        const scrollBy = getScrollAmount();
+        carousel.scrollBy({
+            left: scrollBy,
+            behavior: 'smooth'
+        });
+        
+        // Check for loop after scroll completes
+        setTimeout(handleInfiniteLoop, 400);
+    }
+    
+    // Scroll to previous cards
+    function scrollPrev() {
+        if (isScrolling) return;
+        
+        const scrollBy = getScrollAmount();
+        const currentScroll = carousel.scrollLeft;
+        
+        // If we're at the beginning, jump to the duplicates first
+        if (currentScroll <= 10) {
+            isScrolling = true;
+            const cardWidth = getCardWidth();
+            carousel.scrollTo({
+                left: realCardsCount * (cardWidth + gap),
+                behavior: 'instant'
+            });
+            setTimeout(() => {
+                carousel.scrollBy({
+                    left: -scrollBy,
+                    behavior: 'smooth'
+                });
+                setTimeout(() => {
+                    isScrolling = false;
+                    updateButtons();
+                }, 400);
+            }, 50);
+        } else {
+            carousel.scrollBy({
+                left: -scrollBy,
+                behavior: 'smooth'
+            });
+            setTimeout(handleInfiniteLoop, 400);
+        }
+    }
+    
+    // Button click handlers
+    prevBtn.addEventListener('click', () => {
+        scrollPrev();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        scrollNext();
+    });
+    
+    // Update buttons on scroll
+    carousel.addEventListener('scroll', () => {
+        updateButtons();
+        // Check for infinite loop after user stops scrolling
+        clearTimeout(carousel.scrollTimeout);
+        carousel.scrollTimeout = setTimeout(handleInfiniteLoop, 150);
+    });
+    
+    // Update buttons on window resize
+    window.addEventListener('resize', () => {
+        updateButtons();
+        handleInfiniteLoop();
+    });
+    
+    // Dots click handlers
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            if (isScrolling) return;
+            
+            const cardWidth = getCardWidth();
+            const scrollTo = index * (cardWidth + gap);
+            
+            carousel.scrollTo({
+                left: scrollTo,
+                behavior: 'smooth'
+            });
+            
+            updateButtons();
+        });
+    });
+    
+    // Touch/Swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isDragging = false;
+    
+    carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        isDragging = true;
+    }, { passive: true });
+    
+    carousel.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        touchEndX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    
+    carousel.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                scrollNext();
+            } else {
+                scrollPrev();
+            }
+        } else {
+            // If no swipe detected, check for loop
+            setTimeout(handleInfiniteLoop, 150);
+        }
+        
+        isDragging = false;
+    }, { passive: true });
+    
+    // Mouse drag support for desktop
+    let mouseStartX = 0;
+    let mouseEndX = 0;
+    let isMouseDragging = false;
+    let scrollStartLeft = 0;
+    
+    carousel.addEventListener('mousedown', (e) => {
+        isMouseDragging = true;
+        mouseStartX = e.pageX - carousel.offsetLeft;
+        scrollStartLeft = carousel.scrollLeft;
+        carousel.style.cursor = 'grabbing';
+        carousel.style.userSelect = 'none';
+    });
+    
+    carousel.addEventListener('mouseleave', () => {
+        if (isMouseDragging) {
+            setTimeout(handleInfiniteLoop, 150);
+        }
+        isMouseDragging = false;
+        carousel.style.cursor = 'grab';
+    });
+    
+    carousel.addEventListener('mouseup', () => {
+        if (isMouseDragging) {
+            setTimeout(handleInfiniteLoop, 150);
+        }
+        isMouseDragging = false;
+        carousel.style.cursor = 'grab';
+    });
+    
+    carousel.addEventListener('mousemove', (e) => {
+        if (!isMouseDragging) return;
+        e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        const walk = (x - mouseStartX) * 2;
+        carousel.scrollLeft = scrollStartLeft - walk;
+    });
+    
+    // Keyboard navigation
+    carousel.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            scrollPrev();
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            scrollNext();
+        }
+    });
+    
+    // Initial button state
+    updateButtons();
+    
+    // Set cursor style
+    carousel.style.cursor = 'grab';
 }

@@ -115,10 +115,9 @@
                                 </div>
                                 <!-- API Badges -->
                                 <div class="api-tags">
-                                    <span class="api-tag">Ramp API</span>
-                                    <span class="api-tag">OTC Marketplace / API</span>
-                                    <span class="api-tag">Escrow API</span>
-                                    <span class="api-tag">Transactional API</span>
+                                    <span class="api-tag">Payments API</span>
+                                    <span class="api-tag">OTC API</span>
+                                    <span class="api-tag">Swaps & Bridge API</span>
                                 </div>
                             </div>
                         </div>
@@ -399,8 +398,16 @@
                 <h2>One modular stack to run global finance without friction or regulatory complexity</h2>
             </div>
             
-            <div class="products-grid">
-                <!-- Payment -->
+            <!-- Products Carousel Wrapper -->
+            <div class="products-carousel-container">
+                <button class="carousel-nav carousel-prev-products" aria-label="Previous">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                
+                <div class="products-grid">
+                    <!-- Payments API -->
                 <div class="product-card">
                     <div class="product-header">
                         <div class="product-icon">
@@ -409,8 +416,8 @@
                                 <path d="M3 10H21" stroke="currentColor" stroke-width="1.5"/>
                             </svg>
                         </div>
-                        <span class="product-badge">99.8% success rate</span>
-                        <h3 class="product-title">Payment</h3>
+                        <span class="product-badge">100+ currencies</span>
+                        <h3 class="product-title">Payments API</h3>
                     </div>
                     <div class="product-body">
                         <div class="problem-section">
@@ -418,32 +425,33 @@
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#ef4444" stroke-width="1.5"/><path d="M4 4L8 8M8 4L4 8" stroke="#ef4444" stroke-width="1.5"/></svg>
                                 The Problem:
                             </span>
-                            <p>Integrating fiat on/off ramps is complex and time-consuming</p>
+                            <p>Integrating fiat on/off ramps is complex, fragmented, and often not fully compliant.</p>
                         </div>
                         <div class="solution-section">
                             <span class="section-label-small solution">
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#10b981" stroke-width="1.5"/><path d="M4 6L5.5 7.5L8 4.5" stroke="#10b981" stroke-width="1.5"/></svg>
                                 The Solution:
                             </span>
-                            <p class="solution-text"><strong>Accept payments in 100+ currencies and enable instant crypto-to-fiat conversion</strong></p>
+                            <p class="solution-text"><strong>Accept payments in 100+ currencies with end-to-end fiat ↔️ crypto conversion through a single API</strong></p>
                         </div>
                         <ul class="product-features">
-                            <li>Fiat to crypto & crypto to fiat</li>
-                            <li>Wire transfer, cards, local methods</li>
-                            <li>Auto-compliance & KYC included</li>
-                            <li>Real-time settlement tracking</li>
+                            <li>Fiat to crypto & crypto to fiat (end-to-end ramps)</li>
+                            <li>Bank transfers, cards & local payment methods</li>
+                            <li>Built-in KYC & compliance flows</li>
+                            <li>Real-time settlement & transaction tracking</li>
+                            <li>Optimized routing for lowest possible rates</li>
                         </ul>
                         <div class="product-buttons">
                             <a href="#" class="btn-demo">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L11 8L6 12V4Z" fill="currentColor"/></svg>
                                 View Demo
                             </a>
-                            <a href="#" class="btn-learn">Learn More →</a>
+                            <a href="https://www.vudy.app/en/login" class="btn-learn" target="_blank">Go to app →</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Ramps API -->
+                <!-- OTC API -->
                 <div class="product-card">
                     <div class="product-header">
                         <div class="product-icon">
@@ -452,8 +460,8 @@
                                 <path d="M17 8V20M17 20L21 16M17 20L13 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
-                        <span class="product-badge">$10M+ daily volume</span>
-                        <h3 class="product-title">Ramps API</h3>
+                        <span class="product-badge">Institutional-grade</span>
+                        <h3 class="product-title">OTC API</h3>
                     </div>
                     <div class="product-body">
                         <div class="problem-section">
@@ -461,32 +469,79 @@
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#ef4444" stroke-width="1.5"/><path d="M4 4L8 8M8 4L4 8" stroke="#ef4444" stroke-width="1.5"/></svg>
                                 The Problem:
                             </span>
-                            <p>Large trades cause price slippage and lack liquidity</p>
+                            <p>Executing large crypto trades requires liquidity management, manual coordination, and operational risk.</p>
                         </div>
                         <div class="solution-section">
                             <span class="section-label-small solution">
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#10b981" stroke-width="1.5"/><path d="M4 6L5.5 7.5L8 4.5" stroke="#10b981" stroke-width="1.5"/></svg>
                                 The Solution:
                             </span>
-                            <p class="solution-text"><strong>Execute large volume trades with zero slippage and institutional pricing</strong></p>
+                            <p class="solution-text"><strong>Programmatic access to deep OTC liquidity with compliant, high-volume execution</strong></p>
                         </div>
                         <ul class="product-features">
-                            <li>Instant quotes for large orders</li>
-                            <li>Deep liquidity pools</li>
-                            <li>White-glove settlement</li>
-                            <li>Dedicated account manager</li>
+                            <li>Buy & sell crypto at scale via API</li>
+                            <li>Institutional-grade liquidity providers</li>
+                            <li>Optional escrow flows for OTC transactions</li>
+                            <li>Compliance-ready (KYB / AML supported)</li>
+                            <li>Transparent pricing & execution reporting</li>
                         </ul>
                         <div class="product-buttons">
                             <a href="#" class="btn-demo">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L11 8L6 12V4Z" fill="currentColor"/></svg>
                                 View Demo
                             </a>
-                            <a href="#" class="btn-learn">Learn More →</a>
+                            <a href="https://www.vudy.app/en/login" class="btn-learn" target="_blank">Go to app →</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- OTC Marketplace & API -->
+                <!-- Swaps & Bridge API -->
+                <div class="product-card">
+                    <div class="product-header">
+                        <div class="product-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M7 10L12 5L17 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M17 14L12 19L7 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 5V19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <span class="product-badge">60+ chains</span>
+                        <h3 class="product-title">Swaps & Bridge API</h3>
+                    </div>
+                    <div class="product-body">
+                        <div class="problem-section">
+                            <span class="section-label-small problem">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#ef4444" stroke-width="1.5"/><path d="M4 4L8 8M8 4L4 8" stroke="#ef4444" stroke-width="1.5"/></svg>
+                                The Problem:
+                            </span>
+                            <p>Swapping and bridging assets across chains is slow, fragmented, and difficult to integrate reliably.</p>
+                        </div>
+                        <div class="solution-section">
+                            <span class="section-label-small solution">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#10b981" stroke-width="1.5"/><path d="M4 6L5.5 7.5L8 4.5" stroke="#10b981" stroke-width="1.5"/></svg>
+                                The Solution:
+                            </span>
+                            <p class="solution-text"><strong>A simple API to swap and bridge liquidity across 60+ chains instantly</strong></p>
+                        </div>
+                        <ul class="product-features">
+                            <li>Token swaps & cross-chain bridges</li>
+                            <li>Access to 60+ blockchain networks</li>
+                            <li>Optimized routing for speed & cost</li>
+                            <li>Unified API for swaps & bridges</li>
+                            <li>Real-time status & execution tracking</li>
+                        </ul>
+                        <div class="product-buttons">
+                            <a href="#" class="btn-demo">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L11 8L6 12V4Z" fill="currentColor"/></svg>
+                                View Demo
+                            </a>
+                            <a href="https://www.vudy.app/en/login" class="btn-learn" target="_blank">Go to app →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Duplicate cards for infinite loop -->
+                <!-- Payments API (Duplicate) -->
                 <div class="product-card">
                     <div class="product-header">
                         <div class="product-icon">
@@ -495,8 +550,8 @@
                                 <path d="M3 10H21" stroke="currentColor" stroke-width="1.5"/>
                             </svg>
                         </div>
-                        <span class="product-badge">99.8% success rate</span>
-                        <h3 class="product-title">OTC Marketplace & API</h3>
+                        <span class="product-badge">100+ currencies</span>
+                        <h3 class="product-title">Payments API</h3>
                     </div>
                     <div class="product-body">
                         <div class="problem-section">
@@ -504,42 +559,43 @@
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#ef4444" stroke-width="1.5"/><path d="M4 4L8 8M8 4L4 8" stroke="#ef4444" stroke-width="1.5"/></svg>
                                 The Problem:
                             </span>
-                            <p>Integrating fiat on/off ramps is complex and time-consuming</p>
+                            <p>Integrating fiat on/off ramps is complex, fragmented, and often not fully compliant.</p>
                         </div>
                         <div class="solution-section">
                             <span class="section-label-small solution">
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#10b981" stroke-width="1.5"/><path d="M4 6L5.5 7.5L8 4.5" stroke="#10b981" stroke-width="1.5"/></svg>
                                 The Solution:
                             </span>
-                            <p class="solution-text"><strong>Accept payments in 100+ currencies and enable instant crypto-to-fiat conversion</strong></p>
+                            <p class="solution-text"><strong>Accept payments in 100+ currencies with end-to-end fiat ↔️ crypto conversion through a single API</strong></p>
                         </div>
                         <ul class="product-features">
-                            <li>Fiat to crypto & crypto to fiat</li>
-                            <li>Wire transfer, cards, local methods</li>
-                            <li>Auto-compliance & KYC included</li>
-                            <li>Real-time settlement tracking</li>
+                            <li>Fiat to crypto & crypto to fiat (end-to-end ramps)</li>
+                            <li>Bank transfers, cards & local payment methods</li>
+                            <li>Built-in KYC & compliance flows</li>
+                            <li>Real-time settlement & transaction tracking</li>
+                            <li>Optimized routing for lowest possible rates</li>
                         </ul>
                         <div class="product-buttons">
                             <a href="#" class="btn-demo">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L11 8L6 12V4Z" fill="currentColor"/></svg>
                                 View Demo
                             </a>
-                            <a href="#" class="btn-learn">Learn More →</a>
+                            <a href="https://www.vudy.app/en/login" class="btn-learn" target="_blank">Go to app →</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Waps and Bridge -->
+                <!-- OTC API (Duplicate) -->
                 <div class="product-card">
                     <div class="product-header">
                         <div class="product-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                                <path d="M3 10H21" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M7 16V4M7 4L3 8M7 4L11 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M17 8V20M17 20L21 16M17 20L13 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
-                        <span class="product-badge">99.8% success rate</span>
-                        <h3 class="product-title">Waps and Bridge</h3>
+                        <span class="product-badge">Institutional-grade</span>
+                        <h3 class="product-title">OTC API</h3>
                     </div>
                     <div class="product-body">
                         <div class="problem-section">
@@ -547,42 +603,44 @@
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#ef4444" stroke-width="1.5"/><path d="M4 4L8 8M8 4L4 8" stroke="#ef4444" stroke-width="1.5"/></svg>
                                 The Problem:
                             </span>
-                            <p>Integrating fiat on/off ramps is complex and time-consuming</p>
+                            <p>Executing large crypto trades requires liquidity management, manual coordination, and operational risk.</p>
                         </div>
                         <div class="solution-section">
                             <span class="section-label-small solution">
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#10b981" stroke-width="1.5"/><path d="M4 6L5.5 7.5L8 4.5" stroke="#10b981" stroke-width="1.5"/></svg>
                                 The Solution:
                             </span>
-                            <p class="solution-text"><strong>Accept payments in 100+ currencies and enable instant crypto-to-fiat conversion</strong></p>
+                            <p class="solution-text"><strong>Programmatic access to deep OTC liquidity with compliant, high-volume execution</strong></p>
                         </div>
                         <ul class="product-features">
-                            <li>Fiat to crypto & crypto to fiat</li>
-                            <li>Wire transfer, cards, local methods</li>
-                            <li>Auto-compliance & KYC included</li>
-                            <li>Real-time settlement tracking</li>
+                            <li>Buy & sell crypto at scale via API</li>
+                            <li>Institutional-grade liquidity providers</li>
+                            <li>Optional escrow flows for OTC transactions</li>
+                            <li>Compliance-ready (KYB / AML supported)</li>
+                            <li>Transparent pricing & execution reporting</li>
                         </ul>
                         <div class="product-buttons">
                             <a href="#" class="btn-demo">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L11 8L6 12V4Z" fill="currentColor"/></svg>
                                 View Demo
                             </a>
-                            <a href="#" class="btn-learn">Learn More →</a>
+                            <a href="https://www.vudy.app/en/login" class="btn-learn" target="_blank">Go to app →</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Escrow API -->
+                <!-- Swaps & Bridge API (Duplicate) -->
                 <div class="product-card">
                     <div class="product-header">
                         <div class="product-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                                <path d="M3 10H21" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M7 10L12 5L17 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M17 14L12 19L7 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 5V19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                             </svg>
                         </div>
-                        <span class="product-badge">99.8% success rate</span>
-                        <h3 class="product-title">Escrow API</h3>
+                        <span class="product-badge">60+ chains</span>
+                        <h3 class="product-title">Swaps & Bridge API</h3>
                     </div>
                     <div class="product-body">
                         <div class="problem-section">
@@ -590,73 +648,45 @@
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#ef4444" stroke-width="1.5"/><path d="M4 4L8 8M8 4L4 8" stroke="#ef4444" stroke-width="1.5"/></svg>
                                 The Problem:
                             </span>
-                            <p>Integrating fiat on/off ramps is complex and time-consuming</p>
+                            <p>Swapping and bridging assets across chains is slow, fragmented, and difficult to integrate reliably.</p>
                         </div>
                         <div class="solution-section">
                             <span class="section-label-small solution">
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#10b981" stroke-width="1.5"/><path d="M4 6L5.5 7.5L8 4.5" stroke="#10b981" stroke-width="1.5"/></svg>
                                 The Solution:
                             </span>
-                            <p class="solution-text"><strong>Accept payments in 100+ currencies and enable instant crypto-to-fiat conversion</strong></p>
+                            <p class="solution-text"><strong>A simple API to swap and bridge liquidity across 60+ chains instantly</strong></p>
                         </div>
                         <ul class="product-features">
-                            <li>Fiat to crypto & crypto to fiat</li>
-                            <li>Wire transfer, cards, local methods</li>
-                            <li>Auto-compliance & KYC included</li>
-                            <li>Real-time settlement tracking</li>
+                            <li>Token swaps & cross-chain bridges</li>
+                            <li>Access to 60+ blockchain networks</li>
+                            <li>Optimized routing for speed & cost</li>
+                            <li>Unified API for swaps & bridges</li>
+                            <li>Real-time status & execution tracking</li>
                         </ul>
                         <div class="product-buttons">
                             <a href="#" class="btn-demo">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L11 8L6 12V4Z" fill="currentColor"/></svg>
                                 View Demo
                             </a>
-                            <a href="#" class="btn-learn">Learn More →</a>
+                            <a href="https://www.vudy.app/en/login" class="btn-learn" target="_blank">Go to app →</a>
                         </div>
                     </div>
                 </div>
-
-                <!-- Transactional API -->
-                <div class="product-card">
-                    <div class="product-header">
-                        <div class="product-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                                <path d="M3 10H21" stroke="currentColor" stroke-width="1.5"/>
-                            </svg>
-                        </div>
-                        <span class="product-badge">99.8% success rate</span>
-                        <h3 class="product-title">Transactional API</h3>
-                    </div>
-                    <div class="product-body">
-                        <div class="problem-section">
-                            <span class="section-label-small problem">
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#ef4444" stroke-width="1.5"/><path d="M4 4L8 8M8 4L4 8" stroke="#ef4444" stroke-width="1.5"/></svg>
-                                The Problem:
-                            </span>
-                            <p>Integrating fiat on/off ramps is complex and time-consuming</p>
-                        </div>
-                        <div class="solution-section">
-                            <span class="section-label-small solution">
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#10b981" stroke-width="1.5"/><path d="M4 6L5.5 7.5L8 4.5" stroke="#10b981" stroke-width="1.5"/></svg>
-                                The Solution:
-                            </span>
-                            <p class="solution-text"><strong>Accept payments in 100+ currencies and enable instant crypto-to-fiat conversion</strong></p>
-                        </div>
-                        <ul class="product-features">
-                            <li>Fiat to crypto & crypto to fiat</li>
-                            <li>Wire transfer, cards, local methods</li>
-                            <li>Auto-compliance & KYC included</li>
-                            <li>Real-time settlement tracking</li>
-                        </ul>
-                        <div class="product-buttons">
-                            <a href="#" class="btn-demo">
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L11 8L6 12V4Z" fill="currentColor"/></svg>
-                                View Demo
-                            </a>
-                            <a href="#" class="btn-learn">Learn More →</a>
-                        </div>
-                    </div>
                 </div>
+                
+                <button class="carousel-nav carousel-next-products" aria-label="Next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Products Carousel Dots -->
+            <div class="products-carousel-dots">
+                <button class="carousel-dot active" data-index="0" aria-label="Go to card 1"></button>
+                <button class="carousel-dot" data-index="1" aria-label="Go to card 2"></button>
+                <button class="carousel-dot" data-index="2" aria-label="Go to card 3"></button>
             </div>
         </div>
     </section>
@@ -685,11 +715,11 @@
                             </svg>
                             Schedule Sales Call
                         </a>
-                        <a href="#" class="btn-interactive">
+                        <a href="https://www.vudy.app/en/login" class="btn-interactive" target="_blank">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M7 5L15 10L7 15V5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            Try Interactive Demo
+                            Get started for free
                         </a>
                     </div>
                 </div>
@@ -705,8 +735,16 @@
                 <p class="underlined">From payroll and remittances to treasury, settlements, and global payouts — Vudy powers real-world financial operations on one compliant stack.</p>
             </div>
             
-            <div class="use-cases-grid">
-                <!-- E-commerce -->
+            <!-- Use Cases Carousel Wrapper -->
+            <div class="use-cases-carousel-container">
+                <button class="carousel-nav carousel-prev" aria-label="Previous">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                
+                <div class="use-cases-grid">
+                    <!-- E-commerce Payments -->
                 <div class="use-case-card">
                     <div class="use-case-header">
                         <div class="use-case-icon">
@@ -719,16 +757,16 @@
                         <span class="use-case-tag">E-commerce</span>
                     </div>
                     <h3>Crypto Payments for Online Stores</h3>
-                    <p>Enable your online store to accept cryptocurrency payments with automatic conversion to fiat. No volatility risk, instant settlement.</p>
+                    <p>Enable online stores to accept stablecoin payments with automatic fiat conversion. No volatility risk, instant settlement.</p>
                     
                     <div class="challenge-box">
                         <span class="box-label challenge">Challenge:</span>
-                        <p>High payment processing fees and slow international settlements</p>
+                        <p>High payment processing fees and slow international settlements limit global growth.</p>
                     </div>
                     
                     <div class="solution-box">
                         <span class="box-label solution">Vudy Solution:</span>
-                        <p>Save 2-3% on fees and get same-day settlements worldwide</p>
+                        <p>Accept stablecoin payments globally and settle instantly to fiat or crypto through a single API.</p>
                     </div>
                     
                     <div class="stat-highlight">
@@ -758,16 +796,16 @@
                         <span class="use-case-tag">Gaming</span>
                     </div>
                     <h3>NFT & In-Game Economies</h3>
-                    <p>Create in-game economies with tradeable NFT assets. Enable players to truly own their items and earn real value.</p>
+                    <p>Create in-game economies with tradable NFT assets. Players truly own their items and earn real-world value.</p>
                     
                     <div class="challenge-box">
                         <span class="box-label challenge">Challenge:</span>
-                        <p>Complex NFT minting and marketplace infrastructure</p>
+                        <p>Complex NFT minting, marketplace infrastructure, and payment rails slow down launches.</p>
                     </div>
                     
                     <div class="solution-box">
                         <span class="box-label solution">Vudy Solution:</span>
-                        <p>Launch NFT marketplace in days with our pre-built platform</p>
+                        <p>Launch NFT marketplaces and in-game payments in days using Vudy's pre-built infrastructure.</p>
                     </div>
                     
                     <div class="stat-highlight">
@@ -797,20 +835,20 @@
                         <span class="use-case-tag">Fintech</span>
                     </div>
                     <h3>Neo-Banking Infrastructure</h3>
-                    <p>Build modern banking apps with crypto integration. Offer savings accounts, loans, and investment products.</p>
+                    <p>Build modern fintech and neo-banking apps with integrated crypto, savings, loans, and investment products.</p>
                     
                     <div class="challenge-box">
                         <span class="box-label challenge">Challenge:</span>
-                        <p>Regulatory compliance and secure custody solutions</p>
+                        <p>Regulatory compliance, secure custody, and KYC/AML requirements increase complexity and time-to-market.</p>
                     </div>
                     
                     <div class="solution-box">
                         <span class="box-label solution">Vudy Solution:</span>
-                        <p>SOC 2 compliant infrastructure with built-in KYC/AML</p>
+                        <p>SOC 2 compliant infrastructure with built-in KYC/AML and white-label APIs ready for fintechs.</p>
                     </div>
                     
                     <div class="stat-highlight">
-                        <span class="stat-big">150+</span>
+                        <span class="stat-big">15+</span>
                         <span class="stat-desc">Countries<br>Compliance Coverage</span>
                     </div>
                     
@@ -822,6 +860,51 @@
                         </svg>
                     </a>
                 </div>
+
+                <!-- Real Estate -->
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <div class="use-case-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 10L12 3L21 10V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span class="use-case-tag">Real Estate</span>
+                    </div>
+                    <h3>Real Estate Payments & Global Investments</h3>
+                    <p>Get paid in stablecoins and unlock higher yield opportunities for real estate investments worldwide.</p>
+                    
+                    <div class="challenge-box">
+                        <span class="box-label challenge">Challenge:</span>
+                        <p>International buyers and investors struggle with slow, complex, and expensive cross-border payment solutions.</p>
+                    </div>
+                    
+                    <div class="solution-box">
+                        <span class="box-label solution">Vudy Solution:</span>
+                        <p>Enable seamless global real estate payments using stablecoins with instant settlement and optional fiat conversion.</p>
+                    </div>
+                    
+                    <div class="stat-highlight">
+                        <span class="stat-big">Global</span>
+                        <span class="stat-desc">Investor<br>Base Access</span>
+                    </div>
+                    
+                    <a href="#" class="btn-view-more">
+                        View more
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4L10 4V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10 4L4 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                </div>
+                </div>
+                
+                <button class="carousel-nav carousel-next" aria-label="Next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
             </div>
             
             <!-- Use Case CTA -->
