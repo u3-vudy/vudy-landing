@@ -656,6 +656,14 @@ function initModals() {
     const contactModal = document.getElementById('contactModal');
     const contactForm = document.getElementById('contactForm');
 
+    // Schedule Call Modal
+    const openScheduleCallBtn = document.getElementById('openScheduleCallModal');
+    const closeScheduleCallBtn = document.getElementById('closeScheduleCallModal');
+    const scheduleCallModal = document.getElementById('scheduleCallModal');
+    const scheduleCallForm = document.getElementById('scheduleCallForm');
+    const scheduleTimezoneInput = document.getElementById('scheduleTimezone');
+    const scheduleDateTimeInput = document.getElementById('scheduleDateTime');
+
     function openModal(modal) {
         if (modal) {
             modal.classList.add('active');
@@ -705,6 +713,32 @@ function initModals() {
     if (closeContactBtn) {
         closeContactBtn.addEventListener('click', function() {
             closeModal(contactModal);
+        });
+    }
+
+    // Schedule Call Modal handlers
+    if (openScheduleCallBtn) {
+        openScheduleCallBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Pre-fill timezone + set minimum datetime
+            if (scheduleTimezoneInput) {
+                const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+                scheduleTimezoneInput.value = tz;
+            }
+            if (scheduleDateTimeInput) {
+                const now = new Date();
+                const pad = (n) => String(n).padStart(2, '0');
+                const minVal = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}`;
+                scheduleDateTimeInput.min = minVal;
+            }
+            
+            openModal(scheduleCallModal);
+        });
+    }
+    if (closeScheduleCallBtn) {
+        closeScheduleCallBtn.addEventListener('click', function() {
+            closeModal(scheduleCallModal);
         });
     }
 
@@ -774,6 +808,68 @@ function initModals() {
         });
     }
 
+    // Schedule Call Form submission
+    if (scheduleCallForm) {
+        scheduleCallForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = scheduleCallForm.querySelector('.btn-submit');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Sending...';
+            
+            const formData = {
+                name: document.getElementById('scheduleName')?.value,
+                email: document.getElementById('scheduleEmail')?.value,
+                company: document.getElementById('scheduleCompany')?.value,
+                dateTime: document.getElementById('scheduleDateTime')?.value,
+                timezone: document.getElementById('scheduleTimezone')?.value,
+                channel: document.getElementById('scheduleChannel')?.value,
+                notes: document.getElementById('scheduleNotes')?.value
+            };
+            
+            try {
+                const response = await fetch('/api/schedule-call', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    submitBtn.innerHTML = '✓ Request sent!';
+                    submitBtn.style.background = '#10b981';
+                    
+                    setTimeout(() => {
+                        closeModal(scheduleCallModal);
+                        scheduleCallForm.reset();
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.style.background = '';
+                    }, 2000);
+                } else {
+                    throw new Error(result.error || 'Failed to send');
+                }
+            } catch (error) {
+                console.error('Error submitting schedule form:', error);
+                
+                submitBtn.innerHTML = '✗ Error. Please try again.';
+                submitBtn.style.background = '#ef4444';
+                
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.style.background = '';
+                }, 3000);
+            }
+        });
+    }
+
     // Close modals when clicking outside
     if (termsModal) {
         termsModal.addEventListener('click', function(e) {
@@ -796,6 +892,13 @@ function initModals() {
             }
         });
     }
+    if (scheduleCallModal) {
+        scheduleCallModal.addEventListener('click', function(e) {
+            if (e.target === scheduleCallModal) {
+                closeModal(scheduleCallModal);
+            }
+        });
+    }
 
     // Close any open modal with Escape key
     document.addEventListener('keydown', function(e) {
@@ -803,6 +906,7 @@ function initModals() {
             closeModal(termsModal);
             closeModal(privacyModal);
             closeModal(contactModal);
+            closeModal(scheduleCallModal);
         }
     });
 }

@@ -677,7 +677,7 @@
                     <h2>Ready to see it in action?</h2>
                     <p>Schedule a personalized demo with our team or try our interactive sandbox</p>
                     <div class="cta-demo-buttons">
-                        <a href="#" class="btn-schedule">
+                        <a href="#" class="btn-schedule" id="openScheduleCallModal">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <rect x="3" y="4" width="14" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/>
                                 <path d="M3 8H17" stroke="currentColor" stroke-width="1.5"/>
@@ -1336,6 +1336,70 @@ console.<span class="code-function">log</span>(<span class="code-string">'Connec
                     
                     <button type="submit" class="btn-primary btn-large btn-submit">
                         Send
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10H16M12 6L16 10L12 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Call Modal -->
+    <div id="scheduleCallModal" class="modal-overlay">
+        <div class="modal-container modal-contact">
+            <button class="modal-close" id="closeScheduleCallModal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="modal-content">
+                <h2>Schedule a call</h2>
+                <p class="modal-subtitle">Share your preferred time and we’ll confirm by email.</p>
+                
+                <form id="scheduleCallForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="scheduleName">Name *</label>
+                        <input type="text" id="scheduleName" name="name" required placeholder="Your name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="scheduleEmail">Email *</label>
+                        <input type="email" id="scheduleEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="scheduleCompany">Company</label>
+                        <input type="text" id="scheduleCompany" name="company" placeholder="Your company name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="scheduleDateTime">Preferred date &amp; time *</label>
+                        <input type="datetime-local" id="scheduleDateTime" name="dateTime" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="scheduleTimezone">Timezone *</label>
+                        <input type="text" id="scheduleTimezone" name="timezone" required readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="scheduleChannel">Preferred channel</label>
+                        <select id="scheduleChannel" name="channel">
+                            <option value="Google Meet" selected>Google Meet</option>
+                            <option value="Zoom">Zoom</option>
+                            <option value="Phone call">Phone call</option>
+                            <option value="WhatsApp">WhatsApp</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="scheduleNotes">Notes</label>
+                        <textarea id="scheduleNotes" name="notes" rows="4" placeholder="Anything we should know before the call?"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary btn-large btn-submit">
+                        Request call
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M4 10H16M12 6L16 10L12 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
