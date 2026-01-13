@@ -25,9 +25,18 @@ module.exports = async (req, res) => {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
-        // ClickUp API configuration
-        const CLICKUP_API_KEY = process.env.CLICKUP_API_KEY || 'pk_75558139_WVQRZFA9GE436CWC9KG80FIJJ1X08MIU';
-        const CLICKUP_LIST_ID = process.env.CLICKUP_LIST_ID || '901112892172';
+        // ClickUp API configuration (from environment variables)
+        const CLICKUP_API_KEY = process.env.CLICKUP_API_KEY;
+        const CLICKUP_LIST_ID = process.env.CLICKUP_LIST_ID;
+
+        // Validate environment variables exist
+        if (!CLICKUP_API_KEY || !CLICKUP_LIST_ID) {
+            console.error('Missing ClickUp configuration');
+            return res.status(500).json({ 
+                error: 'Configuration error',
+                message: 'ClickUp API credentials are not configured properly'
+            });
+        }
 
         // Create task description
         const description = `**Contact Information:**
