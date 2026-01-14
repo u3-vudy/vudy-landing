@@ -1,7 +1,8 @@
 // Vercel Serverless Function to handle ClickUp schedule call submissions
 const https = require('https');
 
-const DEFAULT_SCHEDULE_LIST_ID = '8chvb9b-9511';
+// List ID for CITAS in ClickUp
+const DEFAULT_SCHEDULE_LIST_ID = '901112904242';
 
 module.exports = async (req, res) => {
     // Enable CORS
